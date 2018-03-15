@@ -3,6 +3,7 @@
 
 #define PozitieLibera 0
 #define M 9
+int incercari = 0;
 
 bool CautareSpatiuLiber(int cursor[M][M], int &linie, int &coloana)
 {
@@ -19,7 +20,7 @@ bool PozitieSigura(int cursor[M][M], int linie, int coloana, int numar);
 bool Solutie(int cursor[M][M])
 {
 	int linie, coloana;
-
+	incercari++;
 	if (!CautareSpatiuLiber(cursor, linie, coloana))
 	{
 		return true;
@@ -28,7 +29,6 @@ bool Solutie(int cursor[M][M])
 	{
 		if (PozitieSigura(cursor, linie, coloana, numar))
 		{
-
 			cursor[linie][coloana] = numar;
 
 
@@ -205,18 +205,21 @@ void Afisare(int cursor[M][M])
 int main()
 {
 	int cursor[M][M] = {
-		{ 0, 0, 4, 6, 0, 8, 9, 1, 2 },
-	{ 0, 7, 2, 0, 0, 0, 3, 4, 8 },
-	{ 1, 0, 0, 3, 4, 2, 5, 0, 7 },
-	{ 0, 5, 9, 7, 0, 1, 4, 2, 0 },
-	{ 0, 2, 6, 0, 5, 0, 7, 9, 0 },
-	{ 0, 1, 3, 9, 0, 4, 8, 5, 0 },
-	{ 9, 0, 1, 5, 3, 7, 0, 0, 4 },
-	{ 2, 8, 7, 0, 0, 0, 6, 3, 0 },
-	{ 3, 4, 5, 2, 0, 6, 1, 0, 0 }
+		{ 5, 3, 0, 0, 7, 0, 0, 0, 0 },
+	{ 6, 0, 0, 1, 9, 5, 0, 0, 0 },
+	{ 0, 9, 8, 0, 0, 0, 0, 6, 0 },
+	{ 8, 0, 0, 0, 6, 0, 0, 0, 3 },
+	{ 4, 0, 0, 8, 0, 3, 0, 0, 1 },
+	{ 7, 0, 0, 0, 2, 0, 0, 0, 6 },
+	{ 0, 6, 0, 0, 0, 0, 2, 8, 0 },
+	{ 0, 0, 0, 4, 1, 9, 0, 0, 5 },
+	{ 0, 0, 0, 0, 8, 0, 0, 7, 9 }
 	};
 	if (Solutie(cursor) == true)
+	{
 		Afisare(cursor);
+		printf("Incercari:%d", incercari);
+	}
 	else
 		printf("Nici-o solutie gasita!");
 	_getch();
